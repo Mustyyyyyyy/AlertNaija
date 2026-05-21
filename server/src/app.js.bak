@@ -1,4 +1,4 @@
-const express = require("express");
+﻿const express = require("express");
 const cors = require("cors");
 
 const authRoutes = require("./routes/auth.routes");
@@ -12,7 +12,6 @@ const geocodeRoutes = require("./routes/geocode.routes");
 const geoRoutes = require("./routes/geo.routes");
 const assignmentRoutes = require("./routes/assignment.routes");
 const verificationRoutes = require("./routes/verification.routes");
-const adminRoutes = require("./routes/admin");
 
 const app = express();
 
@@ -36,7 +35,6 @@ app.use("/api/geocode", geocodeRoutes);
 app.use("/api/geo", geoRoutes);
 app.use("/api/assignments", assignmentRoutes);
 app.use("/api/verification", verificationRoutes);
-app.use("/api/admin", adminRoutes);
 app.use("/api/emergency-contacts", emergencyRoutes);
 
 app.use(errorMiddleware);
