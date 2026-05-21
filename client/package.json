@@ -1,0 +1,32 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "axios": "^1.16.0",
+    "firebase": "^12.13.0",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.14.0",
+    "mapbox-gl": "^3.13.0",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-hot-toast": "^2.6.0",
+    "react-map-gl": "^7.1.7",
+    "socket.io-client": "^4.8.3",
+    "zustand": "^5.0.13"
+  },
+  "devDependencies": {
+    "@types/node": "25.6.2",
+    "@types/react": "19.2.14",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CITIZEN
+  OPERATOR
+  ADMIN
+}
+
+enum IncidentType {
+  FIRE
+  MEDICAL
+  SECURITY
+  RESCUE
+  BANDITS
+}
+
+enum IncidentStatus {
+  PENDING
+  ASSIGNED
+  IN_PROGRESS
+  RESOLVED
+}
+
+model User {
+  id       String  @id @default(cuid())
+  fullName String
+  email    String? @unique
+  phone    String  @unique
+  password String
+  role     String  @default("citizen")
+  state    String?
+
+  createdAt DateTime   @default(now())
+  incidents Incident[]
+  resetTokens PasswordResetToken[]
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Incident {
+  id     String         @id @default(cuid())
+  type   IncidentType
+  status IncidentStatus @default(PENDING)
+
+  description String?
+  lat         Float
+  lng         Float
+
+  imageUrl String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  responderId String?
+  responder   Responder? @relation(fields: [responderId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+model Responder {
+  id    String @id @default(cuid())
+  name  String
+  type  String
+  state String
+
+  lat Float
+  lng Float
+
+  isAvailable Boolean @default(true)
+  activeCases Int     @default(0)
+
+  incidents Incident[]
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  meta      Json
+  createdAt DateTime @default(now())
+}

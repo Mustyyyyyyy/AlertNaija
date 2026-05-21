@@ -1,0 +1,10 @@
+const fs = require('fs');
+const p = 'C:\\Users\\HP\\Desktop\\AlertNaija\\server\\src\\app.js';
+const stat = fs.statSync(p);
+console.log('app.js size:', stat.size, 'bytes, mtime:', stat.mtime);
+const content = fs.readFileSync(p, 'utf8');
+console.log('---BEGIN---');
+console.log(content);
+console.log('---END---');
+console.log('Total lines:', content.split('\n').length);
+process.exit(0);
