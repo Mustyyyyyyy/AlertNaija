@@ -16,14 +16,8 @@ const NIGERIA_STATES = [
   "Sokoto","Taraba","Yobe","Zamfara",
 ];
 
-/**
- * Shared nationwide hotlines that are appended to every state entry.
- */
-const NATIONAL = {
-  police:    { label: "Nigeria Police",          phone: "0803-200-0196 (NPF SMS 130)",  icon: "🚓" },
-  femi:      { label: "FEMI (SGBV)",             phone: "08002883243",                    icon: "🛡️" },
-  narcotics: { label: "NDLEA",                    phone: "08032206457",                    icon: "⚖️" },
-};
+// Nationwide contacts are currently integrated directly into state entries.
+
 
 const EMERGENCY_AGENCIES = {
   police:    { label: "Police",         icon: "🚓" },
