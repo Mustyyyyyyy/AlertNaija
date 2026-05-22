@@ -62,7 +62,7 @@ export default function SOSPage() {
     setSosActive(true);
     setSosTimer(5);
     // background: notify backend
-    fetch("http://localhost:5001/api/alerts/sos", {
+    fetch("/api/alerts/sos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -31,7 +31,7 @@ export default function useUserLocation() {
       // next-hop: try backend directly
       try {
         const r = await fetch(
-          `http://localhost:5001/api/geo/lookup?lat=${lat}&lng=${lng}`,
+          `/api/geo/lookup?lat=${lat}&lng=${lng}`,
         );
         if (r.ok) {
           const j = await r.json();

@@ -26,7 +26,7 @@ exports.forgotPassword = async (req, res, next) => {
       data: { token, userId: user.id, expiresAt },
     });
     if (user.email) {
-      console.log(`Password reset link: http://localhost:3000/reset/${token}`);
+      console.log(`Password reset link: https://alert-naija-green.vercel.app/reset/${token}`);
     }
     res.json({ success: true, message: "If an account exists, a reset link has been sent." });
   } catch (error) {
