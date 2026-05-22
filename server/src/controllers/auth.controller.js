@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const prisma = require("../config/db");
+const { sendResetPasswordEmail, sendWelcomeEmail } = require("../utils/email");
 
 const generateToken = (user) => {
   return jwt.sign(
@@ -26,7 +27,9 @@ exports.forgotPassword = async (req, res, next) => {
       data: { token, userId: user.id, expiresAt },
     });
     if (user.email) {
-      console.log(`Password reset link: https://alert-naija-green.vercel.app/reset/${token}`);
+      await sendResetPasswordEmail(user.email, token);
+      console.log(`Password reset email sent to: ${user.email}`);
+      console.log(`Fallback link: https://alert-naija-green.vercel.app/reset/${token}`);
     }
     res.json({ success: true, message: "If an account exists, a reset link has been sent." });
   } catch (error) {
@@ -84,6 +87,10 @@ exports.register = async (req, res, next) => {
       // role always defaults to CITIZEN — see Prisma schema @default("citizen")
       data: { fullName, email: cleanEmail, phone: cleanPhone, password: hashedPassword, state: state || null },
     });
+    
+    if (user.email) {
+      sendWelcomeEmail(user.email, user.fullName).catch(err => console.error("Welcome email failed:", err));
+    }
 
     const token = generateToken(user);
     const { password: _, ...userWithoutPassword } = user;

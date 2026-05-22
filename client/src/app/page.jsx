@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Topbar from "../components/layout/Topbar";
 import StatusBar from "../components/layout/StatusBar";
 import LiveMap from "../components/map/LiveMap";
@@ -27,93 +28,140 @@ export default function HomePage() {
   }, [setIncidents]);
 
   return (
-    <main className="min-h-screen bg-background-dark">
+    <main className="min-h-screen bg-background-dark text-slate-200">
       <Topbar />
-      <section className="px-6 lg:px-10 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          <div className="flex-1">
-            <p className="text-primary uppercase tracking-[0.3em] text-xs font-mono">
-              NATIONAL EMERGENCY RESPONSE SYSTEM
-            </p>
-            <h1 className="text-5xl lg:text-7xl font-heading font-bold leading-tight mt-4">
-              Real-Time Emergency Monitoring Across Nigeria
-            </h1>
-            <p className="text-slate-400 max-w-2xl mt-6 text-lg leading-relaxed">
-              AlertNaija is Nigeria&apos;s unified emergency response platform. Track incidents
-              across the nation, dispatch responders instantly, and coordinate rapid action
-              from a single command dashboard.
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl">
-              <div className="bg-slate-800/30 rounded-xl p-4 text-center border border-slate-700">
-                <p className="text-2xl font-bold text-primary">{incidents.length}</p>
-                <p className="text-slate-400 text-xs">Active Incidents</p>
+
+      {/* Hero Section */}
+      <section className="relative pt-20 pb-24 overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1 text-center lg:text-left">
+              <div className="inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8">
+                <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                <span className="text-primary uppercase tracking-widest text-[10px] font-bold">National Emergency Network</span>
               </div>
-              <div className="bg-slate-800/30 rounded-xl p-4 text-center border border-slate-700">
-                <p className="text-2xl font-bold text-primary">24/7</p>
-                <p className="text-slate-400 text-xs">Monitoring</p>
+              
+              <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
+                <Image src="/logo.png" alt="AlertNaija Logo" width={60} height={60} className="rounded-xl shadow-lg border border-white/10" />
+                <h1 className="text-4xl lg:text-6xl font-heading font-black text-white leading-tight">
+                  Protecting <span className="text-primary italic">Every</span> Citizen.
+                </h1>
               </div>
-              <div className="bg-slate-800/30 rounded-xl p-4 text-center border border-slate-700">
-                <p className="text-2xl font-bold text-primary">Fast</p>
-                <p className="text-slate-400 text-xs">Response</p>
-              </div>
-              <div className="bg-slate-800/30 rounded-xl p-4 text-center border border-slate-700">
-                <p className="text-2xl font-bold text-primary">Nationwide</p>
-                <p className="text-slate-400 text-xs">Coverage</p>
-              </div>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <Link href="/map" className="bg-primary text-black font-semibold px-8 py-3 rounded-xl glow-primary text-center">
-                Open Live Map
-              </Link>
-              <Link href="/incidents" className="border border-slate-700 hover:border-primary transition px-8 py-3 rounded-xl text-center">
-                View Incidents
-              </Link>
-              <Link href="/dashboard" className="border border-slate-700 hover:border-primary transition px-8 py-3 rounded-xl text-center">
-                Dashboard
-              </Link>
-              <Link href="/admin" className="bg-slate-800 hover:bg-slate-700 px-8 py-3 rounded-xl text-center transition">
-                Admin Panel
-              </Link>
-              <Link href="/register" className="bg-slate-800 hover:bg-slate-700 px-8 py-3 rounded-xl text-center transition">
-                Register
-              </Link>
-            </div>
-            <div className="mt-10 text-center sm:text-left">
-              <p className="text-slate-400 text-sm">
-                Already have an account?{" "}
-                <Link href="/login" className="text-primary hover:underline">Login</Link>
+
+              <p className="text-lg text-slate-400 max-w-2xl leading-relaxed mb-10">
+                AlertNaija is the unified digital command infrastructure for Nigeria's emergency services. We bridge the gap between citizens in distress and rapid-response teams nationwide.
               </p>
+
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                <Link href="/incidents" className="bg-primary text-black font-bold px-10 py-4 rounded-2xl glow-primary transition-all hover:scale-105 active:scale-95">
+                  Report Incident
+                </Link>
+                <Link href="/map" className="bg-slate-800/80 backdrop-blur border border-slate-700 text-white font-semibold px-10 py-4 rounded-2xl hover:bg-slate-700 transition-all">
+                  Live Crisis Map
+                </Link>
+              </div>
+
+              <div className="mt-12 flex items-center justify-center lg:justify-start gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <p className="text-xs uppercase tracking-tighter">Trusted By</p>
+                <span className="text-xs font-bold">NPF</span>
+                <span className="text-xs font-bold">FRSC</span>
+                <span className="text-xs font-bold">NEMA</span>
+                <span className="text-xs font-bold">LASEMA</span>
+              </div>
             </div>
-          </div>
-          <div className="w-full lg:w-[380px]">
-            <StatusBar />
+
+            <div className="w-full lg:w-[400px]">
+              <StatusBar />
+            </div>
           </div>
         </div>
+      </section>
 
-        <div className="mt-16">
-          <h2 className="text-2xl font-heading font-bold text-white mb-4">Live Incident Map</h2>
+      {/* Stats Section */}
+      <section className="py-16 bg-[#0b1220] border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <p className="text-3xl lg:text-5xl font-black text-white mb-2">{incidents.length}</p>
+              <p className="text-slate-500 text-xs uppercase tracking-widest font-mono">Active Cases</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl lg:text-5xl font-black text-primary mb-2">36+1</p>
+              <p className="text-slate-500 text-xs uppercase tracking-widest font-mono">States Covered</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl lg:text-5xl font-black text-white mb-2">24/7</p>
+              <p className="text-slate-500 text-xs uppercase tracking-widest font-mono">System Uptime</p>
+            </div>
+            <div className="text-center">
+              <p className="text-3xl lg:text-5xl font-black text-primary mb-2">100%</p>
+              <p className="text-slate-500 text-xs uppercase tracking-widest font-mono">Response Priority</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className="py-24 max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <h2 className="text-3xl font-heading font-black text-white">National Crisis Overview</h2>
+            <p className="text-slate-400 mt-2">Real-time geospatial tracking of all active emergency reports across the federation.</p>
+          </div>
+          <Link href="/map" className="text-primary font-bold text-sm hover:underline flex items-center gap-2">
+            Expand Fulll Map <span>&rarr;</span>
+          </Link>
+        </div>
+        <div className="rounded-3xl overflow-hidden border border-white/5 shadow-2xl">
           <LiveMap userLocation={location} incidents={incidents} />
         </div>
+      </section>
 
-        <div className="mt-14">
-          <div className="flex items-center justify-between mb-6">
+      {/* Incidents Feed */}
+      <section className="py-24 bg-[#070b14]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex items-center justify-between mb-12">
             <div>
-              <p className="text-muted uppercase tracking-widest text-xs">Live Incidents</p>
-              <h2 className="text-3xl font-heading font-bold mt-2">Active Emergency Feed</h2>
+              <p className="text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-2">Live updates</p>
+              <h2 className="text-3xl font-heading font-black text-white">Active Incident Feed</h2>
             </div>
-            <Link href="/incidents" className="text-primary text-sm hover:underline">View All</Link>
+            <Link href="/incidents" className="bg-slate-800 px-6 py-2 rounded-xl text-xs font-bold hover:bg-slate-700 transition">View Archive</Link>
           </div>
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+          
+          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
             {incidents.length > 0 ? (
               incidents.slice(0, 6).map((incident) => (
                 <IncidentCard key={incident.id} incident={incident} />
               ))
             ) : (
-              <p className="text-slate-400 col-span-full">No active incidents</p>
+              <div className="col-span-full py-20 text-center border border-dashed border-slate-800 rounded-3xl">
+                <p className="text-slate-500 italic">The network is currently clear. No active incidents reported.</p>
+              </div>
             )}
           </div>
         </div>
       </section>
+
+      {/* CTA Footer */}
+      <footer className="py-20 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
+          <h2 className="text-3xl font-heading font-black text-white mb-6">Stay Alert, Stay Safe.</h2>
+          <p className="text-slate-400 max-w-xl mx-auto mb-10">AlertNaija is a non-profit initiative dedicated to improving public safety through technology. Register today to protect yourself and your community.</p>
+          <div className="flex justify-center gap-6">
+            <Link href="/register" className="text-white hover:text-primary font-bold transition">Get Started</Link>
+            <Link href="/login" className="text-white hover:text-primary font-bold transition">Login</Link>
+          </div>
+          <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+            <p>&copy; 2026 AlertNaija. All rights reserved.</p>
+            <div className="flex gap-8">
+              <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
+              <Link href="/terms" className="hover:text-white">Terms of Use</Link>
+              <Link href="/contact" className="hover:text-white">Contact Agency</Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
