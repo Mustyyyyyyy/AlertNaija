@@ -22,3 +22,4 @@ export default function BackButton() {
       <span className="text-sm font-bold tracking-tight">Back to Dashboard</span>
     </Link>
   );
+}
