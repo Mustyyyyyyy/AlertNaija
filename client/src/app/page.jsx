@@ -36,11 +36,11 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 text-center lg:text-left">
-              <div className="inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8">
+              {/* <div className="inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8">
                 <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
-                {/* <span className="text-primary uppercase tracking-widest text-[10px] font-bold">National Emergency Network</span> */}
-              </div>
-              
+                <span className="text-primary uppercase tracking-widest text-[10px] font-bold">National Emergency Network</span>
+              </div> */}
+
               <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
                 <Image src="/logo.png" alt="AlertNaija Logo" width={60} height={60} className="rounded-xl shadow-lg border border-white/10" />
                 <h1 className="text-4xl lg:text-6xl font-heading font-black text-white leading-tight">
@@ -126,7 +126,7 @@ export default function HomePage() {
             </div>
             <Link href="/incidents" className="bg-slate-800 px-6 py-2 rounded-xl text-xs font-bold hover:bg-slate-700 transition">View Archive</Link>
           </div>
-          
+
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
             {incidents.length > 0 ? (
               incidents.slice(0, 6).map((incident) => (

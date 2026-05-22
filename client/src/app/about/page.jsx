@@ -11,20 +11,18 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background-dark text-slate-300 pb-20">
       <Topbar />
-      
-      {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10 mt-10 lg:mt-20">
           <BackButton />
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-6"
           >
             <span className="text-primary text-[10px] font-black uppercase tracking-widest">Our Mission</span>
           </motion.div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -32,7 +30,7 @@ export default function AboutPage() {
           >
             Safeguarding Nigeria Through <span className="text-primary">Innovation.</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -43,7 +41,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats/Highlight Section */}
       <section className="max-w-7xl mx-auto px-6 mb-32">
         <div className="grid md:grid-cols-3 gap-8">
           {[
@@ -51,7 +48,7 @@ export default function AboutPage() {
             { icon: <Shield className="text-primary" />, title: "Verified Data", desc: "Multi-layered verification ensures that emergency resources are never wasted on false alarms." },
             { icon: <Users className="text-primary" />, title: "Citizen Driven", desc: "Empowering 200 million Nigerians to be the eyes and ears of national safety agencies." }
           ].map((item, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -69,14 +66,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story Section */}
       <section className="max-w-7xl mx-auto px-6 mb-32">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="relative">
             <div className="aspect-square bg-gradient-to-br from-primary/20 to-emerald-900/20 rounded-[40px] border border-white/5 overflow-hidden">
-               <div className="absolute inset-0 flex items-center justify-center">
-                  <Shield size={120} className="text-primary/20" />
-               </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Shield size={120} className="text-primary/20" />
+              </div>
             </div>
             <div className="absolute -bottom-6 -right-6 bg-[#0b1220] border border-white/10 p-6 rounded-3xl shadow-2xl max-w-xs">
               <p className="text-white font-bold text-lg mb-1">State-of-the-art</p>
@@ -87,7 +83,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-heading font-black text-white mb-6">Built for the Nigerian Reality</h2>
             <div className="space-y-6 text-slate-400 leading-relaxed">
               <p>
-                In moments of crisis, every second counts. Traditional emergency response in Nigeria has often been hindered by fragmented communication and geographic uncertainty. 
+                In moments of crisis, every second counts. Traditional emergency response in Nigeria has often been hindered by fragmented communication and geographic uncertainty.
               </p>
               <p>
                 AlertNaija was conceived as a solution to this challenge. By bridging the gap between national agencies like the **NPF**, **FRSC**, and **NEMA** through a single, intelligent platform, we ensure that help arrives precisely where and when it's needed.
@@ -105,7 +101,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Features Grid */}
       <section className="bg-[#070b14] py-24 border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -128,7 +123,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
       <section className="max-w-4xl mx-auto px-6 pt-32 text-center">
         <h2 className="text-4xl font-heading font-black text-white mb-8">Ready to secure your community?</h2>
         <div className="flex flex-wrap justify-center gap-4">
