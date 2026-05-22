@@ -1,10 +1,10 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Topbar from "../../components/layout/Topbar";
-import BackButton from "../../components/layout/BackButton";
-import API from "../../lib/api";
+import Topbar from "../../../components/layout/Topbar";
+import BackButton from "../../../components/layout/BackButton";
+import API from "../../../lib/api";
 
 export default function AdminRespondersPage() {
   const router = useRouter();

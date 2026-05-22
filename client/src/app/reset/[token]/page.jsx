@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import API from "../../lib/api";
+import API from "../../../lib/api";
 
 export default function ResetPasswordPage({ token }) {
   const router = useRouter();
