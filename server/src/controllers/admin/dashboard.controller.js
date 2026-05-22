@@ -103,8 +103,15 @@ exports.updateResponderAvailability = async (req, res, next) => {
 exports.deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    await prisma.user.delete({ where: { id } });
-    res.json({ success: true, message: "User deleted successfully" });
+    
+    // Use an interactive transaction to clean up related data
+    await prisma.$transaction([
+      prisma.passwordResetToken.deleteMany({ where: { userId: id } }),
+      prisma.incident.deleteMany({ where: { userId: id } }),
+      prisma.user.delete({ where: { id } })
+    ]);
+
+    res.json({ success: true, message: "User and all related data deleted successfully" });
   } catch (error) {
     next(error);
   }
@@ -113,8 +120,17 @@ exports.deleteUser = async (req, res, next) => {
 exports.deleteResponder = async (req, res, next) => {
   try {
     const { id } = req.params;
-    await prisma.responder.delete({ where: { id } });
-    res.json({ success: true, message: "Responder deleted successfully" });
+    
+    // Use a transaction to unassign from incidents before deleting
+    await prisma.$transaction([
+      prisma.incident.updateMany({
+        where: { responderId: id },
+        data: { responderId: null, status: "PENDING" }
+      }),
+      prisma.responder.delete({ where: { id } })
+    ]);
+
+    res.json({ success: true, message: "Responder deleted and incidents unassigned" });
   } catch (error) {
     next(error);
   }
