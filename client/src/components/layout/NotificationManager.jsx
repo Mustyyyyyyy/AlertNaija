@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
-import useIncidentStore from "../store/incident.store";
+import useIncidentStore from "../../store/incident.store";
 
 export default function NotificationManager() {
   const { incidents } = useIncidentStore();
