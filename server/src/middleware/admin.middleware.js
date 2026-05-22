@@ -14,7 +14,7 @@ exports.protectAdmin = async (req, res, next) => {
     const user = await prisma.user.findUnique({ where: { id: decoded.id } });
     if (!user) return res.status(401).json({ success: false, message: "Unauthorized" });
 
-    if (user.role !== "ADMIN") {
+    if (user.role?.toUpperCase() !== "ADMIN") {
       return res.status(403).json({ success: false, message: "Forbidden: Admin access required" });
     }
 
