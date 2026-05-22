@@ -22,11 +22,19 @@ export default function UserDashboardPage() {
     if (!token) { router.push("/login"); return; }
     try {
       const res = await API.get("/auth/me");
-      setUser(res.data.user);
-if (res.data.user.role && res.data.user.role.toUpperCase() !== "CITIZEN") {
-         router.push("/responder");
-       }
-    } catch { localStorage.removeItem("token"); router.push("/login"); }
+      const { user } = res.data;
+      setUser(user);
+      
+      const role = user.role?.toUpperCase();
+      if (role === "ADMIN") {
+        router.push("/admin");
+      } else if (role && role !== "CITIZEN") {
+        router.push("/responder");
+      }
+    } catch { 
+      localStorage.removeItem("token"); 
+      router.push("/login"); 
+    }
   };
 
   const fetchIncidents = async () => {
