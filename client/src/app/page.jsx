@@ -31,7 +31,6 @@ export default function HomePage() {
     <main className="min-h-screen bg-background-dark text-slate-200">
       <Topbar />
 
-      {/* Hero Section */}
       <section className="relative pt-20 pb-24 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -39,7 +38,7 @@ export default function HomePage() {
             <div className="flex-1 text-center lg:text-left">
               <div className="inline-flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8">
                 <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
-                <span className="text-primary uppercase tracking-widest text-[10px] font-bold">National Emergency Network</span>
+                {/* <span className="text-primary uppercase tracking-widest text-[10px] font-bold">National Emergency Network</span> */}
               </div>
               
               <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
@@ -102,7 +101,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Map Section */}
       <section className="py-24 max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
