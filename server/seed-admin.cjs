@@ -18,9 +18,9 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const ADMIN_FULL_NAME = process.env.ADMIN_NAME        || "AlertNaija Admin";
-const ADMIN_EMAIL     = process.env.ADMIN_EMAIL       || "admin@alertnaija.ng";
+const ADMIN_EMAIL     = process.env.ADMIN_EMAIL       || "admin1@alertnaija.ng";
 const ADMIN_PHONE     = process.env.ADMIN_PHONE       || "08000000000";
-const ADMIN_PASSWORD  = process.env.ADMIN_PASSWORD    || "admin12345";
+const ADMIN_PASSWORD  = process.env.ADMIN_PASSWORD    || "admin123456";
 const JWT_SECRET      = process.env.JWT_SECRET        || "change-me";
 
 function generateToken(user) {
