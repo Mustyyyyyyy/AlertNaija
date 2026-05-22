@@ -11,10 +11,11 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-background-dark text-slate-300 pb-20">
       <Topbar />
+      <BackButton />
+
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10 mt-10 lg:mt-20">
-          <BackButton />
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
