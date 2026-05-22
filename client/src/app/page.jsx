@@ -71,6 +71,9 @@ export default function HomePage() {
               <Link href="/dashboard" className="border border-slate-700 hover:border-primary transition px-8 py-3 rounded-xl text-center">
                 Dashboard
               </Link>
+              <Link href="/admin" className="bg-slate-800 hover:bg-slate-700 px-8 py-3 rounded-xl text-center transition">
+                Admin Panel
+              </Link>
               <Link href="/register" className="bg-slate-800 hover:bg-slate-700 px-8 py-3 rounded-xl text-center transition">
                 Register
               </Link>
