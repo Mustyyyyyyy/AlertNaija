@@ -15,7 +15,7 @@ export default function AdminUsersPage() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const res = await API.get("/api/admin/users");
+      const res = await API.get("/admin/users");
       setUsers(res.data.users || []);
     } catch (err) {
       setError("Failed to fetch users");
@@ -29,7 +29,7 @@ export default function AdminUsersPage() {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     
     try {
-      await API.delete(`/api/admin/users/${userId}`);
+      await API.delete(`/admin/users/${userId}`);
       // Remove from local state
       setUsers(users.filter(user => user.id !== userId));
     } catch (err) {

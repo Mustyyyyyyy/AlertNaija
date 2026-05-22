@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -39,7 +39,7 @@ export default function AdminDashboardPage() {
 
   const fetchDashboardStats = async () => {
     try {
-      const res = await API.get("/api/admin/dashboard/stats");
+      const res = await API.get("/admin/dashboard/stats");
       setDashboardStats(res.data);
     } catch (err) { 
       console.error("Failed to fetch admin dashboard stats:", err); 
@@ -48,7 +48,7 @@ export default function AdminDashboardPage() {
 
   const fetchUsers = async () => {
     try {
-      const res = await API.get("/api/admin/users");
+      const res = await API.get("/admin/users");
       setUsers(res.data.users || []);
     } catch (err) { 
       console.error("Failed to fetch users:", err); 
@@ -57,7 +57,7 @@ export default function AdminDashboardPage() {
 
   const fetchResponders = async () => {
     try {
-      const res = await API.get("/api/admin/responders");
+      const res = await API.get("/admin/responders");
       setResponders(res.data.responders || []);
     } catch (err) { 
       console.error("Failed to fetch responders:", err); 

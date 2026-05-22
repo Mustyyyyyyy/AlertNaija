@@ -15,7 +15,7 @@ export default function AdminRespondersPage() {
   const fetchResponders = async () => {
     try {
       setLoading(true);
-      const res = await API.get("/api/admin/responders");
+      const res = await API.get("/admin/responders");
       setResponders(res.data.responders || []);
     } catch (err) {
       setError("Failed to fetch responders");
@@ -27,7 +27,7 @@ export default function AdminRespondersPage() {
 
   const handleToggleAvailability = async (responderId, isAvailable) => {
     try {
-      await API.patch(`/api/admin/responders/${responderId}/availability`, {
+      await API.patch(`/admin/responders/${responderId}/availability`, {
         isAvailable: !isAvailable
       });
       // Update local state
