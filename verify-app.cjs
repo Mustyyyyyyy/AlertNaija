@@ -1,5 +1,6 @@
 const fs = require('fs');
-const p = 'C:\\Users\\HP\\Desktop\\AlertNaija\\server\\src\\app.js';
+const path = require('path');
+const p = path.join(process.cwd(), 'server', 'src', 'app.js');
 const stat = fs.statSync(p);
 console.log('app.js size:', stat.size, 'bytes, mtime:', stat.mtime);
 const content = fs.readFileSync(p, 'utf8');

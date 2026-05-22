@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const ROOT = 'C:\\Users\\HP\\Desktop\\AlertNaija';
+const ROOT = process.cwd();
 
 // Write all server rebuild files from scratch
 const files = {};
