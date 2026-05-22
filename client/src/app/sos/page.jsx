@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { EMERGENCY_CONTACTS, getEmergencyForState } from "../../../utils/nigeriaStates";
+import { EMERGENCY_CONTACTS, getEmergencyForState } from "../../utils/nigeriaStates";
 
 /** Build a tel: URI from any number string */
 function makeTel(raw) {
