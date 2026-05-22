@@ -12,7 +12,8 @@ const transporter = nodemailer.createTransport({
 
 exports.sendResetPasswordEmail = async (email, token) => {
   try {
-    const baseUrl = process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',')[0] : "https://alert-naija-green.vercel.app";
+    // Ensure we use the production URL for deployment
+    const baseUrl = "https://alert-naija-green.vercel.app";
     const resetUrl = `${baseUrl}/reset/${token}`;
     
     const mailOptions = {
