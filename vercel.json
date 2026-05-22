@@ -1,23 +1,19 @@
 {
   "builds": [
     {
-      "src": "server/package.json",
-      "use": "@vercel/node",
-      "config": { "distDir": "server" }
-    },
-    {
       "src": "client/package.json",
-      "use": "@vercel/next"
+      "use": "@vercel/next",
+      "config": { "distDir": ".next" }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "server/src/server.js"
+      "dest": "/server/src/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "client/$1"
+      "dest": "/client/$1"
     }
   ]
 }
