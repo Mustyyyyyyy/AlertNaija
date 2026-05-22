@@ -99,3 +99,23 @@ exports.updateResponderAvailability = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await prisma.user.delete({ where: { id } });
+    res.json({ success: true, message: "User deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteResponder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await prisma.responder.delete({ where: { id } });
+    res.json({ success: true, message: "Responder deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};

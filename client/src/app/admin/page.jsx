@@ -48,7 +48,7 @@ export default function AdminDashboardPage() {
 
   const fetchUsers = async () => {
     try {
-      const res = await API.get("/admin/users");
+      const res = await API.get("/admin/dashboard/users");
       setUsers(res.data.users || []);
     } catch (err) { 
       console.error("Failed to fetch users:", err); 
@@ -57,7 +57,7 @@ export default function AdminDashboardPage() {
 
   const fetchResponders = async () => {
     try {
-      const res = await API.get("/admin/responders");
+      const res = await API.get("/admin/dashboard/responders");
       setResponders(res.data.responders || []);
     } catch (err) { 
       console.error("Failed to fetch responders:", err); 
