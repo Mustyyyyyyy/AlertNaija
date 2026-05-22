@@ -6,12 +6,35 @@ exports.createIncident = async (req, res) => {
     const userId = req.user?.id || null;
     const { type, description, lat, lng, imageUrl = null } = req.body;
 
+    // Auto-Routing: High-risk types get CRITICAL priority immediately
+    let priority = "NORMAL";
+    if (["BANDITS", "SECURITY", "FIRE"].includes(type)) {
+      priority = "CRITICAL";
+    }
+
     const incident = await prisma.incident.create({
-      data: { type, description, lat: parseFloat(lat), lng: parseFloat(lng), imageUrl, userId, status: "PENDING" },
+      data: { 
+        type, 
+        description, 
+        lat: parseFloat(lat), 
+        lng: parseFloat(lng), 
+        imageUrl, 
+        userId, 
+        status: "PENDING",
+        priority 
+      },
       include: { user: { select: { id: true, fullName: true, state: true } } },
     });
 
+    // Instant Broadcast to Agencies & Command Center
     getIO().to("command-center").emit("new-incident", incident);
+    
+    if (priority === "CRITICAL") {
+      getIO().emit("high-priority-broadcast", { 
+        message: `DEPLY IMMEDIATE: ${type} incident reported!`,
+        incident 
+      });
+    }
     res.status(201).json({ success: true, incident });
   } catch (error) {
     res.status(500).json({ success: false, message: "Failed to create incident" });

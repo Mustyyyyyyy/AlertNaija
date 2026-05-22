@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Topbar from "../../components/layout/Topbar";
 import BackButton from "../../components/layout/BackButton";
+import SOSButton from "../../components/dashboard/SOSButton";
 import LiveMap from "../../components/map/LiveMap";
 import IncidentCard from "../../components/incidents/IncidentCard";
 import API from "../../lib/api";
@@ -71,6 +72,8 @@ export default function UserDashboardPage() {
             Report emergencies and track incident status
           </p>
         </div>
+
+        <SOSButton userState={user?.state || state || "Lagos"} />
 
         <div className="grid lg:grid-cols-3 gap-8 mb-8">
           <div className="bg-gradient-to-b from-[#111826] to-[#0a0f1a] border border-slate-800 rounded-2xl p-6">

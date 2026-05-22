@@ -7,19 +7,29 @@ import { ChevronLeft } from "lucide-react";
 export default function BackButton() {
   const pathname = usePathname();
 
-  // If the user is in the admin section, "Dashboard" should mean the admin dashboard
-  const isAdminPage = pathname.startsWith("/admin");
-  const dashboardPath = isAdminPage ? "/admin" : "/dashboard";
+  // Smart Routing Logic:
+  // 1. If in Admin section -> Go to /admin
+  // 2. If in Dashboard section -> Go to /dashboard
+  // 3. If on public pages (About, Privacy, etc.) -> Go to / (Home)
+  
+  let targetPath = "/";
+  let label = "Home";
+
+  if (pathname.startsWith("/admin")) {
+    targetPath = "/admin";
+    label = "Dashboard";
+  } else if (pathname.startsWith("/dashboard") || pathname.startsWith("/report") || pathname.startsWith("/incidents")) {
+    targetPath = "/dashboard";
+    label = "Dashboard";
+  }
 
   return (
     <Link 
-      href={dashboardPath} 
-      className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors group mb-6 no-underline"
+      href={targetPath} 
+      className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors group mb-6 no-underline bg-white/5 border border-white/10 px-4 py-2 rounded-2xl"
     >
-      <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/5 transition-all">
-        <ChevronLeft size={18} className="group-hover:text-primary transition-colors" />
-      </div>
-      <span className="text-sm font-bold tracking-tight">Back to Dashboard</span>
+      <ChevronLeft size={18} className="group-hover:text-primary transition-colors" />
+      <span className="text-sm font-bold tracking-tight">Back to {label}</span>
     </Link>
   );
 }

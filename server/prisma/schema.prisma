@@ -69,6 +69,7 @@ model Incident {
   responderId String?
   responder   Responder? @relation(fields: [responderId], references: [id])
 
+  priority String @default("NORMAL")
   createdAt DateTime @default(now())
 }
 
