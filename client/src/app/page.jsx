@@ -31,7 +31,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-background-dark text-slate-200">
       <Topbar />
 
-      <section className="relative pt-20 pb-24 overflow-hidden">
+      <section className="relative pt-20 pb-24 overflow-hidden mt-10">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
