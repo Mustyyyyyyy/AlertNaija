@@ -10,6 +10,7 @@ import IncidentCard from "../../components/incidents/IncidentCard";
 import API from "../../lib/api";
 import useIncidentStore from "../../store/incident.store";
 import useUserLocation from "../../hooks/useUserLocation";
+import PWAInstall from "../../components/dashboard/PWAInstall";
 
 export default function UserDashboardPage() {
   const router = useRouter();
@@ -61,9 +62,12 @@ export default function UserDashboardPage() {
   const allIncidents = incidents.filter((i) => i.status !== "RESOLVED");
 
   return (
-    <main className="min-h-screen bg-background-dark">
+    <main className="min-h-screen bg-background-dark relative overflow-hidden">
+      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] animate-pulse"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "2s" }}></div>
       <Topbar />
-      <section className="px-6 lg:px-10 py-8">
+      <PWAInstall />
+      <section className="px-6 lg:px-10 py-8 relative z-10">
         <div className="mb-8">
           <h1 className="text-3xl font-heading font-bold text-white">
             Welcome, {user?.fullName?.split(" ")[0] || "User"}
@@ -76,14 +80,17 @@ export default function UserDashboardPage() {
         <SOSButton userState={user?.state || state || "Lagos"} />
 
         <div className="grid lg:grid-cols-3 gap-8 mb-8">
-          <div className="bg-gradient-to-b from-[#111826] to-[#0a0f1a] border border-slate-800 rounded-2xl p-6">
-            <h2 className="text-xl font-heading font-bold text-white mb-4">Quick Actions</h2>
-            <div className="grid grid-cols-2 gap-3">
-              <button onClick={() => router.push("/incidents")} className="bg-primary/10 border border-primary/30 rounded-xl p-4 text-center hover:bg-primary/20 transition">
-                <span className="text-primary font-semibold text-sm">Report Incident</span>
+          <div className="bg-[#0b1220]/50 backdrop-blur-md border border-white/5 rounded-[32px] p-8 shadow-xl">
+            <h2 className="text-xl font-heading font-black text-white mb-6 flex items-center gap-2">
+              <div className="w-1.5 h-6 bg-primary rounded-full"></div>
+              Quick Actions
+            </h2>
+            <div className="grid grid-cols-2 gap-4">
+              <button onClick={() => router.push("/incidents")} className="bg-primary/10 border border-primary/20 rounded-2xl p-5 text-center hover:bg-primary/20 hover:scale-[1.03] transition-all group">
+                <span className="text-primary font-bold text-sm block group-hover:scale-105 transition-transform">Report Incident</span>
               </button>
-              <button onClick={() => router.push("/map")} className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center hover:bg-slate-800 transition">
-                <span className="text-white font-semibold text-sm">View Map</span>
+              <button onClick={() => router.push("/map")} className="bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 hover:scale-[1.03] transition-all">
+                <span className="text-white font-bold text-sm">View Map</span>
               </button>
               <button onClick={() => router.push("/incidents")} className="bg-slate-800/50 border border-slate-700 rounded-xl p-4 text-center hover:bg-slate-800 transition">
                 <span className="text-white font-semibold text-sm">View Incidents</span>
@@ -94,10 +101,10 @@ export default function UserDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-b from-[#111826] to-[#0a0f1a] border border-slate-800 rounded-2xl p-6">
-            <h2 className="text-xl font-heading font-bold text-white mb-2">Your Status</h2>
-            <p className="text-2xl font-bold text-primary mb-4">{state || "Unknown"}</p>
-            <div className="space-y-3">
+          <div className="bg-[#0b1220]/50 backdrop-blur-md border border-white/5 rounded-[32px] p-8 shadow-xl">
+            <h2 className="text-xl font-heading font-black text-white mb-2">Your Status</h2>
+            <p className="text-3xl font-black text-primary mb-6 tracking-tight">{state || "Unknown"}</p>
+            <div className="space-y-4">
               <div className="flex items-center justify-between py-2 border-b border-slate-800">
                 <span className="text-slate-400 text-sm">Role</span>
                 <span className="text-white text-sm font-semibold">{user?.role || "CITIZEN"}</span>
@@ -113,9 +120,9 @@ export default function UserDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-b from-[#111826] to-[#0a0f1a] border border-slate-800 rounded-2xl p-6 overflow-y-auto max-h-[320px]">
-            <h2 className="text-xl font-heading font-bold text-white mb-4">My Reports</h2>
-            <div className="space-y-3">
+          <div className="bg-[#0b1220]/50 backdrop-blur-md border border-white/5 rounded-[32px] p-8 shadow-xl overflow-y-auto max-h-[350px]">
+            <h2 className="text-xl font-heading font-black text-white mb-6">My Reports</h2>
+            <div className="space-y-4">
               {myIncidents.length === 0 ? (
                 <p className="text-slate-400 text-center py-8">No incidents reported yet</p>
               ) : (

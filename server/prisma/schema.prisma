@@ -85,6 +85,7 @@ model Responder {
   isAvailable Boolean @default(true)
   activeCases Int     @default(0)
 
+  createdAt DateTime @default(now())
   incidents Incident[]
 }
 

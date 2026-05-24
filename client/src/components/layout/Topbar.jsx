@@ -16,7 +16,8 @@ import {
   LayoutDashboard,
   Settings,
   Map as MapIcon,
-  AlertCircle
+  AlertCircle,
+  Download
 } from "lucide-react";
 import API from "../../lib/api";
 
@@ -45,14 +46,31 @@ export default function Topbar() {
       }
     };
     checkUser();
+
+    const handleBeforeInstallPrompt = (e) => {
+      window.deferredPrompt = e;
+    };
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
     
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    };
   }, [pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setUser(null);
     router.push("/");
+  };
+
+  const handleInstall = async () => {
+    const prompt = window.deferredPrompt;
+    if (prompt) {
+      prompt.prompt();
+      const { outcome } = await prompt.userChoice;
+      if (outcome === "accepted") window.deferredPrompt = null;
+    }
   };
 
   const isPublicPage = pathname === "/";
@@ -203,6 +221,9 @@ export default function Topbar() {
                   <Link href="/profile" className="text-lg font-bold text-white flex items-center gap-3" onClick={() => setIsMobileMenuOpen(false)}>
                     <User size={20} className="text-primary" /> Profile
                   </Link>
+                  <button onClick={handleInstall} className="text-lg font-bold text-white flex items-center gap-3">
+                    <Download size={20} className="text-primary" /> Install App
+                  </button>
                   <button onClick={handleLogout} className="text-lg font-bold text-red-500 flex items-center gap-3">
                     <LogOut size={20} /> Logout
                   </button>
